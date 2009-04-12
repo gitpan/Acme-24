@@ -44,17 +44,19 @@ Artistic License, same as Perl itself.
 
 package Acme::24;
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 use strict;
 use warnings;
 use LWP::Simple  ();
 use XML::RSSLite ();
 
+use constant URL => 'http://www.notrly.com/jackbauer';
+
 # Returns one random fact
 sub random_jackbauer_fact
 {
-    my $url  = 'http://www.notrly.com/jackbauer/';
+    my $url  = URL;
     my $page = LWP::Simple::get($url);
     my $fact = '';
 
@@ -80,7 +82,7 @@ sub random_jackbauer_fact
 sub random_jackbauer_facts
 {
     my %result;
-    my $url = 'http://www.twentyfour.tv/jackbauer/rss.php';
+    my $url = URL . '/rss.php';
     my $feed = LWP::Simple::get($url);
     XML::RSSLite::parseRSS(\%result, \$feed);
     my @facts = ();
@@ -106,18 +108,19 @@ sub collect_facts
     close($fh);
 }
 
-=cut
-package main;
 
-use Data::Dumper;
-#print Acme::24->random_jackbauer_fact();
-#print Dumper(Acme::24->random_jackbauer_facts()), "\n";
-$| = 1;
-while(1)
-{
-    Acme::24->collect_facts() and print '.';
+unless (caller) {
+
+	print random_jackbauer_fact();
+
+	# Collect random Jack Bauer facts
+	#$| = 1;
+	#while(1)
+	#{
+    # 	Acme::24->collect_facts() and print '.';
+    #}
+
 }
-=cut
 
 1;
 
