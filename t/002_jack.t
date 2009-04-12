@@ -8,5 +8,5 @@ use_ok('Acme::24');
 
 my $fact = Acme::24->random_jackbauer_fact();
 
-ok(defined $fact && $fact ne '' && ($fact =~ /jack/i || $fact =~ /bauer/ || $fact =~ /24/), 'Random Jack Bauer fact: ' . $fact);
+ok(defined $fact && $fact ne '', 'Random Jack Bauer fact: ' . $fact);
 

@@ -44,7 +44,7 @@ Artistic License, same as Perl itself.
 
 package Acme::24;
 
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use strict;
 use warnings;
@@ -54,7 +54,7 @@ use XML::RSSLite ();
 # Returns one random fact
 sub random_jackbauer_fact
 {
-    my $url  = 'http://www.twentyfour.tv/jackbauer/';
+    my $url  = 'http://www.notrly.com/jackbauer/';
     my $page = LWP::Simple::get($url);
     my $fact = '';
 
